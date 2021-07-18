@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service definition for ch_userinfo_01'
+define service Z_SD_CH_USERINFO_M_01 {
+  expose z_c_ch_userinfo_m_01;
+}

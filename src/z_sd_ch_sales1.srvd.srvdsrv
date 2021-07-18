@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service definition for sale head/item'
+define service Z_SD_CH_SALES1 {
+  expose z_c_ch_sohead1;
+  expose z_c_ch_soitem1;
+}

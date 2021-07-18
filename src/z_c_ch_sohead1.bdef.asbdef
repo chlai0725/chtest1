@@ -1,0 +1,69 @@
+managed; // implementation in class zbp_c_ch_sohead1 unique;
+//strict; //Comment this line in to enable strict mode. The strict mode is prerequisite to be future proof regarding syntax and to be able to release your BO.
+
+define behavior for z_c_ch_sohead1 alias SOHead_1
+implementation in class zbp_c_ch_sohead1 unique
+persistent table zch_vbak1
+with additional save
+lock master
+//authorization master ( instance )
+etag master last_changed
+{
+  field (readonly) sales_doc_num;
+
+  mapping for zch_vbak1 control z_c_ch_sohead1 corresponding
+  {
+    sales_doc_num = vbeln;
+    block_status = faksk;
+    sales_dist = vtweg;
+    sales_div = spart;
+    sales_org = vkorg;
+    total_cost = netwr;
+    cost_currency = waerk;
+    person_created = ernam;
+    date_created = erdat;
+    last_changed = last_changed_timestamp;
+  }
+
+  create;
+  update(features:instance);
+  delete(features:instance);
+  association _SOItem1 { create(features:instance); }
+
+  action blockOrder result[1] $self;
+  action unblockOrder result[1] $self;
+}
+
+define behavior for z_c_ch_soitem1 alias SOItem_1
+implementation in class zbp_c_ch_soitem1 unique
+persistent table zch_vbap1
+lock dependent by _SOHead1
+//authorization dependent by _SOHead1
+etag master last_changed
+{
+  field(mandatory:create) item_position;
+
+  //determination newSalesTotal on modify { field quantity, unit_cost; }
+  determination newSalesTotal on modify { create; update; delete; }
+
+  validation checkUnitPriceQuantity on save { field quantity, unit_cost; }
+
+  mapping for zch_vbap1 control z_c_ch_soitem1 corresponding
+  {
+    sales_doc_num = vbeln;
+    item_position = posnr;
+    cost_currency = waerk;
+    mat_desc = arktx;
+    mat_num = matnr;
+    quantity = kpein;
+    total_item_cost = netwr;
+    unit_cost = netpr;
+    unit = kmein;
+    last_changed = last_changed_timestamp;
+  }
+
+  update;
+  delete;
+  field ( readonly ) sales_doc_num;
+  //association _SOHead1;
+}

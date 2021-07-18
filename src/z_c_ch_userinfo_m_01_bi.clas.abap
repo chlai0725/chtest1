@@ -1,0 +1,5 @@
+CLASS z_c_ch_userinfo_m_01_bi DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF z_c_ch_userinfo_m_01.
+ENDCLASS.
+
+CLASS z_c_ch_userinfo_m_01_bi IMPLEMENTATION.
+ENDCLASS.

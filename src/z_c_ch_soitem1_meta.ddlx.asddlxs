@@ -1,0 +1,67 @@
+@Metadata.layer: #CORE
+
+@UI:{
+        headerInfo: {
+          typeName: 'Sale Document Item',
+          typeNamePlural: 'Sale Document Items',
+          title: { value: 'sales_doc_num' }
+        }
+}
+
+annotate view z_c_ch_soitem1 with
+{
+  @UI.facet: [
+    { type:#IDENTIFICATION_REFERENCE, position: 10, id: 'SOITEM1', label: 'SO Items'},
+    { type:#FIELDGROUP_REFERENCE, position: 10, parentId: 'SOITEM1', targetQualifier: 'ItemDetail1' }
+  ]
+
+  @UI:{ lineItem: [{ position: 10, label: 'Number', importance: #HIGH }],
+        identification: [{ position: 10, label: 'Number' }],
+        fieldGroup: [{ qualifier: 'ItemDetail1', position: 10, importance: #HIGH }]
+  }
+  sales_doc_num;
+  @UI:{ lineItem: [{ position: 20, label: 'Position', importance: #HIGH }],
+        identification: [{ position: 20, label: 'Position' }],
+        fieldGroup: [{ qualifier: 'ItemDetail1', position: 10, importance: #HIGH }]
+  }
+  item_position;
+  @UI:{ lineItem: [{ position: 30, label: 'Material', importance: #HIGH }],
+        identification: [{ position: 30, label: 'Material' }],
+        fieldGroup: [{ qualifier: 'ItemDetail1', position: 10, importance: #HIGH }]
+  }
+  mat_num;
+  @UI:{ lineItem: [{ position: 40, label: 'Desc', importance: #HIGH }],
+        identification: [{ position: 40, label: 'Desc' }],
+        fieldGroup: [{ qualifier: 'ItemDetail1', position: 10, importance: #HIGH }]
+  }
+  mat_desc;
+  @UI:{ lineItem: [{ position: 50, label: 'Unit Price', importance: #HIGH }],
+        identification: [{ position: 50, label: 'Unit Price' }],
+        fieldGroup: [{ qualifier: 'ItemDetail1', position: 10, importance: #HIGH }]
+  }
+  unit_cost;
+  @UI:{ lineItem: [{ position: 60, label: 'Price', importance: #HIGH }],
+        identification: [{ position: 60, label: 'Price' }],
+        fieldGroup: [{ qualifier: 'ItemDetail1', position: 10, importance: #HIGH }]
+  }
+  total_item_cost;
+  @UI:{ lineItem: [{ position: 61, label: 'Currency', importance: #HIGH }],
+        identification: [{ position: 61, label: 'Currency' }],
+        fieldGroup: [{ qualifier: 'ItemDetail1', position: 10, importance: #HIGH }]
+  }
+  cost_currency;
+  @UI:{ lineItem: [{ position: 70, label: 'Quantity', importance: #HIGH }],
+        identification: [{ position: 70, label: 'Quantity' }],
+        fieldGroup: [{ qualifier: 'ItemDetail1', position: 10, importance: #HIGH }]
+  }
+  quantity;
+  @UI:{ lineItem: [{ position: 80, label: 'Unit', importance: #HIGH }],
+        identification: [{ position: 71, label: 'Unit' }],
+        fieldGroup: [{ qualifier: 'ItemDetail1', position: 10, importance: #HIGH }]
+  }
+  unit;
+  //last_chnaged;
+  /* Associations */
+  //_SOHead1;
+
+}

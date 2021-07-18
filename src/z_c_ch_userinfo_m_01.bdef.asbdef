@@ -1,0 +1,32 @@
+managed implementation in class z_c_ch_userinfo_m_01_bi unique;
+//strict;
+
+define behavior for z_c_ch_userinfo_m_01 alias User_01
+persistent table ZCH_USERINFO
+lock master
+//authorization master ( instance )
+etag master last_changed_at
+{
+   //field ( readonly ) Email, first_name, last_name;
+   create;
+   update;
+   delete;
+
+   mapping for zch_userinfo
+   {
+        Email = user_email;
+        first_name = first_name;
+        last_name = last_name;
+        is_admin = is_admin;
+        last_changed_at = last_changed_at;
+   }
+
+   // mapping for zch_userinfo corresponding;
+
+   action makeUserAdmin result [1] $self;
+   action removeUserAdmin result [1] $self;
+
+   validation validEmail on save {field Email;}
+
+   determination assignAdmin on modify {field Email;}
+}
